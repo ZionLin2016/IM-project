@@ -1,11 +1,12 @@
 package cn.bio.server.protocol;
 
-import com.imsdk.beanparser.BeanPacket;
+
+import cn.bio.server.parser.BasicPacket;
 
 public interface ICmdProtocol {
 
-	// return whether the command has been successfully processed.
-	boolean onCmd(BeanPacket cp);
+	// 返回命令是否已成功处理
+	boolean onCmd(BasicPacket cp);
 
 	Client getClient();
 

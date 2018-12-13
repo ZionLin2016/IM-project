@@ -8,6 +8,7 @@ public class GetTime {
 		SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss.SSS");
 		Date currentTime = new Date();
 		String dateString = formatter.format(currentTime);
+
 		return dateString;
 	}
 }

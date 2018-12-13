@@ -1,9 +1,20 @@
-package cn.bio.server.bean;
+package cn.bio.server.dto;
 
-public class Data {
-	private int type; // 0文本，1图片链接，2视频链接， 3命令
+import java.io.Serializable;
+
+public class Data implements Serializable {
+	private static final long serialVersionUID = 1854155988149764620L;
+	/**
+	 * 0文本，1图片链接，2视频链接， 3命令
+	 */
+	private int type;
+
 	private int pattion;
-	private String data; // 内容
+
+	/**
+	 * 内容
+	 */
+	private String data;
 
 	public int getType() {
 		return type;

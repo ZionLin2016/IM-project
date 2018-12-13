@@ -1,15 +1,23 @@
-package cn.bio.server.beanparser;
+package cn.bio.server.parser;
 
-import com.imsdk.util.Tool;
+
+import cn.bio.server.util.Tool;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BasicBeanParser {
+public abstract class BasicPacketParser {
 
-	protected static final int HEADID_LEN = 4;// 包头标识长度
-	protected static final int PACKEAGE_LEN = 4;// 包长
+	/**
+	 * 包头标识长度
+	 */
+	protected static final int HEADID_LEN = 4;
+
+	/**
+	 * 包长
+	 */
+	protected static final int PACKEAGE_LEN = 4;
 	protected static final int PROTOCOL_LEN = 4;
 
 	private static final int HEAD = 666;
@@ -32,7 +40,14 @@ public abstract class BasicBeanParser {
 		this.protocolNum = protocolNum;
 	}
 
-	// 拼接发送数据
+
+
+	/**
+	 * 拼接发送数据
+	 *
+	 * @return
+	 * @throws Exception
+	 */
 	public byte[] sendAllData() throws Exception {
 		byte[] head = Tool.intToByteArrays(getHead());
 		byte[] pack = Tool.intToByteArrays(getLength());
@@ -47,7 +62,9 @@ public abstract class BasicBeanParser {
 		return send;
 	}
 
-	// 解析接收数据
+	/**
+	 * 解析接收数据
+	 */
 	public List<Integer> parseData(byte[] data) {
 		int head = Tool.byteArrayToInt2(data, 0, HEADID_LEN);
 		int pack = Tool.byteArrayToInt2(data, HEADID_LEN, PACKEAGE_LEN);

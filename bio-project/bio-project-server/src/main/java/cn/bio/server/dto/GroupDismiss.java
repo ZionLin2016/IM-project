@@ -1,6 +1,10 @@
-package cn.bio.server.bean;
+package cn.bio.server.dto;
 
-public class GroupDismiss {
+import java.io.Serializable;
+
+public class GroupDismiss implements Serializable {
+	private static final long serialVersionUID = 5419345801795185108L;
+
 	private int guideid;
 
 	private boolean status;

@@ -1,6 +1,10 @@
-package cn.bio.server.bean;
+package cn.bio.server.dto;
 
-public class Ping {
+import java.io.Serializable;
+
+public class Ping implements Serializable {
+	private static final long serialVersionUID = 1759840235030337397L;
+
 	private int pingid;
 	private String reserved;
 

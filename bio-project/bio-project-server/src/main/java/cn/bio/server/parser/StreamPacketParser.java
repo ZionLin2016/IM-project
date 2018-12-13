@@ -1,16 +1,20 @@
-package cn.bio.server.beanparser;
+package cn.bio.server.parser;
 
 import java.io.ByteArrayOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StreamBeanParser extends BasicBeanParser implements Serializable {
+public class StreamPacketParser extends BasicPacketParser implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 4078504671163645451L;
 
-	private byte[] audioData;// 音频数据
+	/**
+	 * 音频数据
+	 */
+	private byte[] audioData;
 
+	@Override
 	public int getLength() {
 		return HEADID_LEN + PACKEAGE_LEN + PROTOCOL_LEN + audioData.length;
 	}
@@ -23,7 +27,12 @@ public class StreamBeanParser extends BasicBeanParser implements Serializable {
 		this.audioData = audioData;
 	}
 
-	// 拼接发送数据
+	/**
+	 * 拼接发送数据
+	 *
+	 * @return
+	 * @throws Exception
+	 */
 	@Override
 	public byte[] sendAllData() throws Exception {
 		byte[] base = super.sendAllData();
@@ -37,7 +46,12 @@ public class StreamBeanParser extends BasicBeanParser implements Serializable {
 		return send;
 	}
 
-	// 解析接收数据
+	/**
+	 * 解析接收数据
+	 *
+	 * @param data
+	 * @return
+	 */
 	@Override
 	public List<Integer> parseData(byte[] data) {
 

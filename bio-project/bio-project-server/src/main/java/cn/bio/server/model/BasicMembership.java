@@ -1,12 +1,17 @@
 package cn.bio.server.model;
 
-import com.imsdk.protocol.Client;
+
+import cn.bio.server.protocol.Client;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentSkipListSet;
 
 public class BasicMembership {
+
+    private static final Logger logger = LoggerFactory.getLogger(BasicMembership.class);
 
 	private static Object setLock = new Object();
 	/*
@@ -128,7 +133,8 @@ public class BasicMembership {
 	}
 
 	synchronized public boolean addClient(Client newClient) {
-		System.out.println("add new client " + newClient.getClientID());
+        logger.info("add new client " + newClient.getClientID());
+
 		if (!allClient.contains(newClient)) {
 			// two relationships
 			allClient.add(newClient);
@@ -141,12 +147,11 @@ public class BasicMembership {
 
 	synchronized public void joinGroup(Client client, GroupModel group) {
 
-		System.out.println("joinGroup: client=" + client.getClientID()
-				+ " group=" + group.getGroupId());
+        logger.info("joinGroup: client=" + client.getClientID()
+                + " group=" + group.getGroupId());
 
 		if (!allGroup.contains(group)) {
-			System.out
-					.println("You can't join a client to a group that is not yet maintained");
+			logger.info("You can't join a client to a group that is not yet maintained");
 			return;
 		}
 
@@ -156,8 +161,7 @@ public class BasicMembership {
 		// 2nd way:
 		ConcurrentSkipListSet<Client> members = mapGroup2Memberset.get(group);
 		if (members == null) {
-			System.out
-					.println("You can't join a client to a group the memberset of which is not yet maintained");
+            logger.info("You can't join a client to a group the memberset of which is not yet maintained");
 			return;
 		}
 		members.add(client);

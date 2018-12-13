@@ -1,4 +1,4 @@
-package cn.bio.server.beanparser;
+package cn.bio.server.parser;
 
 import java.io.ByteArrayOutputStream;
 import java.io.Serializable;
@@ -7,13 +7,16 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlockBeanParser extends BasicBeanParser implements Serializable {
+public class BlockPacketParser extends BasicPacketParser implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 3958327412945203404L;
 
 	public static final int PROTOCOL_TYPE = 0;
 
-	private String data;// 正文数据
+	/**
+	 * 正文数据
+	 */
+	private String data;
 
 	@Override
 	public int getLength() {
@@ -28,7 +31,12 @@ public class BlockBeanParser extends BasicBeanParser implements Serializable {
 		this.data = data;
 	}
 
-	// 拼接发送数据
+	/**
+	 * 拼接发送数据
+	 *
+	 * @return
+	 * @throws Exception
+	 */
 	@Override
 	public byte[] sendAllData() throws Exception {
 		byte[] base = super.sendAllData();
@@ -42,7 +50,12 @@ public class BlockBeanParser extends BasicBeanParser implements Serializable {
 		return send;
 	}
 
-	// 解析接收数据
+	/**
+	 * 解析接收数据
+	 *
+	 * @param data
+	 * @return
+	 */
 	@Override
 	public List<Integer> parseData(byte[] data) {
 		ArrayList<Integer> list = (ArrayList<Integer>) super.parseData(data);

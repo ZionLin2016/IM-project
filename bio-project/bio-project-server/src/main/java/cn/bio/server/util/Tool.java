@@ -10,7 +10,12 @@ import java.io.UnsupportedEncodingException;
 
 public class Tool {
 
-	// int 转字节数组
+	/**
+	 * int 转字节数组
+	 *
+	 * @param i
+	 * @return
+	 */
 	public static byte[] intToByteArrays(int i) {
 		byte[] result = new byte[4];
 		result[0] = (byte) ((i >> 24) & 0xFF);
@@ -30,7 +35,12 @@ public class Tool {
 		return b;
 	}
 
-	// 字节数组转int
+	/**
+	 * 字节数组转int
+	 *
+	 * @param b
+	 * @return
+	 */
 	public static int byteArray2Int(byte[] b) {
 		int intValue = 0;
 		for (int i = 0; i < b.length; i++) {
@@ -54,7 +64,12 @@ public class Tool {
 		return intValue;
 	}
 
-	// 字节数组转String
+	/**
+	 * 字节数组转String
+	 *
+	 * @param bytes
+	 * @return
+	 */
 	public static String byteArrays2String(byte[] bytes) {
 
 		StringBuffer sbuf = new StringBuffer();

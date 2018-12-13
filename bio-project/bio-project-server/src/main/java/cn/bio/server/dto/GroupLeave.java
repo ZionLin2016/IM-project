@@ -1,6 +1,10 @@
-package cn.bio.server.bean;
+package cn.bio.server.dto;
 
-public class GroupLeave {
+import java.io.Serializable;
+
+public class GroupLeave implements Serializable {
+	private static final long serialVersionUID = -244458114013985455L;
+
 	private int userid;
 
 	private int guideid;

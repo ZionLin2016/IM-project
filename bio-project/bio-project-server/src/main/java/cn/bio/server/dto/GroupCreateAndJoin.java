@@ -1,9 +1,24 @@
-package cn.bio.server.bean;
+package cn.bio.server.dto;
 
-public class GroupCreateAndJoin {
-	private int userid;// 导游id
-	private int groupid;// 群id
-	private String reserved;// 预留信息
+import java.io.Serializable;
+
+public class GroupCreateAndJoin implements Serializable {
+	private static final long serialVersionUID = -5254747568099938871L;
+
+	/**
+	 * 导游id
+	 */
+	private int userid;
+
+	/**
+	 * 群id
+	 */
+	private int groupid;
+
+	/**
+	 * 预留信息
+	 */
+	private String reserved;
 
 	public int getUserid() {
 		return userid;

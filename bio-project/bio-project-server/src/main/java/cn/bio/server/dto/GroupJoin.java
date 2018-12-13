@@ -1,11 +1,29 @@
-package cn.bio.server.bean;
+package cn.bio.server.dto;
 
-public class GroupJoin {
-	private int userid; // 用户id
-	private int guideid; // 选择的导游id
+import java.io.Serializable;
 
-	private int groupid; // 群id
-	private int status; // 状态信息
+public class GroupJoin implements Serializable {
+	private static final long serialVersionUID = -4611208767850716612L;
+
+	/**
+	 * 用户id
+	 */
+	private int userid;  
+
+	/**
+	 * 选择的导游id
+	 */
+	private int guideid;  
+
+	/**
+	 * 群id
+	 */
+	private int groupid;  
+
+	/**
+	 * 状态信息
+	 */
+	private int status;  
 
 	public int getUserid() {
 		return userid;

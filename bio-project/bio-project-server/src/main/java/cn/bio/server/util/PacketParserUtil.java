@@ -1,5 +1,7 @@
-package cn.bio.server.beanparser;
+package cn.bio.server.util;
 
+import cn.bio.server.parser.BasicPacket;
+import cn.bio.server.parser.BasicPacketParser;
 import com.google.gson.Gson;
 
 import java.io.DataInputStream;
@@ -8,7 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class BeanParserUtil {
+public class PacketParserUtil {
 
 	private static Gson gson = new Gson();
 
@@ -20,11 +22,17 @@ public class BeanParserUtil {
 		return gson.fromJson(json, obj);
 	}
 
-	// 读数据
-	public static BeanPacket readFromStream(DataInputStream dins)
+	/**
+	 * 读数据
+	 *
+	 * @param dins
+	 * @return
+	 * @throws IOException
+	 */
+	public static BasicPacket readFromStream(DataInputStream dins)
 			throws IOException {
 
-		BeanPacket re = new BeanPacket();
+		BasicPacket re = new BasicPacket();
 
 		re.headId = dins.readInt();
 		re.size = dins.readInt();
@@ -37,16 +45,26 @@ public class BeanParserUtil {
 		return re;
 	}
 
-	// 写数据
-	public static void writeToStream(BasicBeanParser basicProtocol,
-                                     DataOutputStream outputStream) throws Exception {
+	/**
+	 * 写数据
+	 *
+	 * @param basicProtocol
+	 * @param outputStream
+	 * @throws Exception
+	 */
+	public static void writeToStream(BasicPacketParser basicProtocol,
+									 DataOutputStream outputStream) throws Exception {
 
 		byte[] buffData = basicProtocol.sendAllData();
 		outputStream.write(buffData);
 		outputStream.flush();
 	}
 
-	// 关闭输入流
+	/**
+	 * 关闭输入流
+	 *
+	 * @param is
+	 */
 	public static void closeInputStream(InputStream is) {
 		try {
 			if (is != null) {
@@ -57,7 +75,11 @@ public class BeanParserUtil {
 		}
 	}
 
-	// 关闭输出流
+	/**
+	 * 关闭输出流
+	 *
+	 * @param os
+	 */
 	public static void closeOutputStream(OutputStream os) {
 		try {
 			if (os != null) {

@@ -1,6 +1,6 @@
-package cn.bio.server.beanparser;
+package cn.bio.server.parser;
 
-public class BeanPacket {
+public class BasicPacket {
 
 	public int headId;
 	public int size;

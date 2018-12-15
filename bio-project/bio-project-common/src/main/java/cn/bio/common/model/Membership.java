@@ -1,6 +1,7 @@
 package cn.bio.common.model;
 
-import cn.bio.common.protocol.Client;
+
+import cn.bio.common.client.Client;
 
 import java.util.ArrayList;
 import java.util.Iterator;

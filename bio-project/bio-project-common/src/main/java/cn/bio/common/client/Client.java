@@ -1,10 +1,10 @@
-package cn.bio.common.protocol;
+package cn.bio.common.client;
 
 
-import cn.bio.common.parser.BasicPacketParser;
 import cn.bio.common.parser.BasicPacket;
-import cn.bio.common.util.PacketParserUtil;
+import cn.bio.common.parser.BasicPacketParser;
 import cn.bio.common.util.GetTime;
+import cn.bio.common.util.PacketParserUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +23,7 @@ public class Client implements Comparable<Client> {
     protected int clientID;
     protected String userName;
     protected int groupID;
-    protected ICmdProtocol protocol;
+    protected IConsoleShow protocol;
     private volatile boolean isLoopRecAndSend = true;
 
     private ThreadReceiveHandler threadReceiveHandler;
@@ -47,7 +47,7 @@ public class Client implements Comparable<Client> {
         return "null";
     }
 
-    public void setProcotol(ICmdProtocol protocol) {
+    public void setProcotol(IConsoleShow protocol) {
         this.protocol = protocol;
     }
 
@@ -214,7 +214,7 @@ public class Client implements Comparable<Client> {
                     if (inputStream != null) {
                         BasicPacket cp = PacketParserUtil.readFromStream(inputStream);
 
-                        boolean succ = protocol.onCmd(cp);
+                        boolean succ = protocol.onConsole(cp);
 
                         if (!succ) {
                             ackWrongMsg();

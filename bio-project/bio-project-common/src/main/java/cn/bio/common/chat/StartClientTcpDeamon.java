@@ -1,7 +1,7 @@
 package cn.bio.common.chat;
 
-import cn.bio.common.protocol.Client;
-import cn.bio.common.util.ConfigConstant;
+import cn.bio.common.client.Client;
+import cn.bio.common.util.Config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +21,7 @@ public class StartClientTcpDeamon implements Runnable {
 		ServerSocket serverSocket = null;
 		try {
 
-			serverSocket = new ServerSocket(ConfigConstant.SOCKET_PORT);
+			serverSocket = new ServerSocket(Config.SOCKET_PORT);
 			while (isStart) {
 				logger.debug("等待用户接入 : ");
 				Socket socket = serverSocket.accept();

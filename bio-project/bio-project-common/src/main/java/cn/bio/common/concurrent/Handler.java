@@ -10,10 +10,10 @@ public abstract class Handler {
     private LinkedBlockingQueue<Object> queue = new LinkedBlockingQueue<Object>();
     private volatile boolean isStop = false;
 
-    private class InnerCmd {
+    private class InnerConsole {
         public final int what; //0: stop;
 
-        public InnerCmd(int what) {
+        public InnerConsole(int what) {
             this.what = what;
         }
 
@@ -45,7 +45,7 @@ public abstract class Handler {
     }
 
     public void stop() {
-        queue.add(new InnerCmd(0));
+        queue.add(new InnerConsole(0));
     }
 
     protected class HandlerThread extends Thread {
@@ -65,8 +65,8 @@ public abstract class Handler {
 
                         } else if (event instanceof Runnable) {
                             ((Runnable) event).run();
-                        } else if (event instanceof InnerCmd) {
-                            InnerCmd cmd = (InnerCmd) event;
+                        } else if (event instanceof InnerConsole) {
+                            InnerConsole cmd = (InnerConsole) event;
                             switch (cmd.what) {
                                 case 0:
                                     isStop = true;

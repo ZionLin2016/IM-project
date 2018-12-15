@@ -3,10 +3,10 @@ package cn.bio.common.chat;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import cn.bio.common.client.Client;
 import cn.bio.common.model.GroupModel;
 import cn.bio.common.model.Membership;
 import cn.bio.common.parser.BasicPacketParser;
-import cn.bio.common.protocol.Client;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

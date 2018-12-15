@@ -5,20 +5,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cn.bio.common.client.Client;
+import cn.bio.common.client.IConsoleShow;
 import cn.bio.common.dto.Data;
 import cn.bio.common.dto.GroupJoin;
 import cn.bio.common.dto.Ping;
 import cn.bio.common.parser.BasicPacket;
 import cn.bio.common.parser.BlockPacketParser;
 import cn.bio.common.parser.StreamPacketParser;
-import cn.bio.common.protocol.Client;
-import cn.bio.common.protocol.ICmdProtocol;
 import cn.bio.common.util.GetTime;
 import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ClientProtocol implements ICmdProtocol {
+public class ClientProtocol implements IConsoleShow {
     private static final Logger logger = LoggerFactory.getLogger(ClientProtocol.class);
 
     public ClientProtocol(Client client) {
@@ -33,7 +33,7 @@ public class ClientProtocol implements ICmdProtocol {
     private final Client client;
     private boolean succ = false;
 
-    private ArrayList<ICmdProtocol> proChain = new ArrayList<ICmdProtocol>();
+    private ArrayList<IConsoleShow> proChain = new ArrayList<IConsoleShow>();
 
     @Override
     public Client getClient() {
@@ -41,7 +41,7 @@ public class ClientProtocol implements ICmdProtocol {
     }
 
     @Override
-    public boolean onCmd(BasicPacket cp) {
+    public boolean onConsole(BasicPacket cp) {
 
         if (cp.protocolNum == ProtocolType.PING) {
             logger.debug("Received a ping");
@@ -64,7 +64,10 @@ public class ClientProtocol implements ICmdProtocol {
                 if (cp.protocolNum == ProtocolType.GROUP_CREATE_AND_JOIN) {
                     curState = ClientState.Leader_Begin;
                     succ = true;
-                } else {
+                } else if (cp.protocolNum == ProtocolType.GROUP_JOIN){
+                    curState = ClientState.Member_Begin;
+                    succ = true;
+                }else {
                     break;
                 }
                 break;

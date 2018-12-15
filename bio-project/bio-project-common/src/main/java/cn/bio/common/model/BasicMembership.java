@@ -1,7 +1,7 @@
 package cn.bio.common.model;
 
 
-import cn.bio.common.protocol.Client;
+import cn.bio.common.client.Client;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
